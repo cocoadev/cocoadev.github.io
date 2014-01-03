@@ -3,16 +3,13 @@ layout: page
 title: CocoaDev
 ---
 
-**EDITING HAS BEEN TEMPORARILY DISABLED**
-
-The CocoaDev site is undergoing some big changes to take it into 2013 and beyond. See below for details.
-
 The Skinny
 ----------
 
-* Converted to full Markdown syntax
+* Converted to full Markdown syntax (redcarpet +no_intra_emphasis +autolink)
 * Migrated to a Github repository (clone, modify, pull request)
-* Accepted pull requests use Jekyll to convert to static content, push to server
+* Accepted pull requests use Jekyll to convert to static content, publish to
+  server
 
 Benefits
 --------
@@ -22,10 +19,4 @@ Benefits
 * Speeds up live site
 * Allows mass edits (yay!)
 * Standardizes markup
-
-Timeline
---------
-
-EDITABLE SOON. Check this page for updates.
-
 
