@@ -1,12 +1,12 @@
 ---
 layout: page
-title: All Pages
+title: All
 ---
 
 {% for page in site.pages %}
 {% if page.layout != nil %}
 {% if page.layout != 'feed' %}
- * <a href="{{ page.url | remove: '/index.html' }}">{{ page.url | remove: '/index.html' }}</a>
+ * <a href="{{ page.url | remove: '/index.html' }}">{{ page.title }}</a>
 {% endif %}
 {% endif %}
 {% endfor %}
