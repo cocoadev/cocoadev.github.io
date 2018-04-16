@@ -7,7 +7,7 @@ ScreenSaverEngine is the Cocoa application that displays screen saver modules at
 
 If necessary you can run the ScreenSaverEngine from Terminal:
 
-    /System/Library/Frameworks/S<nowiki/>creenSaver.framework/Resources/S<nowiki/>creenSaverEngine.app/Contents/M<nowiki/>acOS/S<nowiki/>creenSaverEngine
+    /System/Library/Frameworks/ScreenSaver.framework/Resources/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine
 
 This is useful for running the engine under GDB for easy debugging.
 
