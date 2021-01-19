@@ -95,55 +95,7 @@ Just for the record, GNUstep is LGPL.
 
 ----
 
-As of version 0.11 of the GUI package (AppKit), GNUstep can now load NIBs made for Mac OS 10.2 or later.  This should make GNUstep a lot more compatible with graphical Cocoa apps.http://jamtangankanan.blogspot.com/
-http://www.souvenirnikahku.com/
-http://xamthonecentral.com/
-http://www.jualsextoys.com
-http://bookingbaliaccommodation.com/
-http://seminyakbalivillarental.com/
-http://www.ubudbalivillasrental.com/
-http://www.balivillaexotic.com/
-http://thechristinbalivilla.com/
-http://www.pusatjamoriginal.com/
-http://citralandpekanbaru.net78.net/
-http://www.jeparacrafters.com/
-http://www.cantikherbal.com/
-http://www.kopiluwakbandung.com/
-http://tki-mandiri.com/
-http://citraindah.biz/
-http://www.kostumbadut.info/
-http://www.rotankita.com/
-http://www.souvenirku182.blogspot.com/
-http://keishaflorist.com/
-http://www.keishaflorist.net/
-http://jaringaniklan.om-onny.com/
-http://www.om-onny.com/2012/01/agen-haji-dan-umroh.html
-http://www.om-onny.com/2012/02/cara-cepat-meninggikan-badan.html
-http://www.om-onny.com/2012/02/cara-cepat-mengencangkan-payudara.html
-http://www.om-onny.com/2012/02/cara-mengatasi-insomnia-sulit-tidur.html
-http://www.om-onny.com/2011/11/4-cara-mengecilkan-perut-buncit.html
-http://www.om-onny.com/2012/01/tips-menghilangkan-stress-di-pagi-hari.html
-http://www.om-onny.com/2012/01/4-tips-agar-awet-muda.html
-http://www.om-onny.com/2012/02/cara-menambah-berat-badan.html
-http://www.om-onny.com/2012/02/tips-cara-memilih-dan-memakai-jilbab.html
-http://www.om-onny.com/2012/02/cara-cek-server-hosting-yang-lagi-down.html
-http://www.om-onny.com/2012/01/cara-membuka-indera-keenam.html
-http://www.om-onny.com/2011/04/buka-aura-dan-cakra-tenaga-dalam.html
-http://www.om-onny.com/2012/02/tips-cara-memilih-dan-memakai-jilbab.html
-http://cupu.web.id
-http://seoweblog.net
-http://corsva.com
-http://yudinet.com/
-http://seo.corsva.com
-http://seojek.edublogs.org/
-http://tasgrosir-brandedmurah.com/
-http://upin.blogetery.com/
-http://www.symbian-kreatif.co.cc/
-http://upin.blog.com/
-http://release.pressku.com/
-http://cupu.web.id/tablet-android-honeycomb-terbaik-murah/
-http://cupu.web.id/hotel-murah-di-yogyakarta-klikhotel-com/
-http://www.seoweblog.net/hotel-murah-di-semarang-klikhotel-com/
+As of version 0.11 of the GUI package (AppKit), GNUstep can now load NIBs made for Mac OS 10.2 or later.  This should make GNUstep a lot more compatible with graphical Cocoa apps.
 
 ----
 
