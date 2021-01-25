@@ -1,6 +1,2 @@
 name: CocoaDev
-markdown: redcarpet
-pygments: true
-redcarpet:
-  extensions: [no_intra_emphasis, autolink]
-
+markdown: kramdown
