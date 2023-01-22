@@ -626,21 +626,21 @@ Added revert functionality (After revert the changes to the document don't get r
     - (void)windowControllerDidLoadNib:(NSWindowController *) aController {
         [super windowControllerDidLoadNib:aController];
         // Add any code here that needs to be executed once the windowController has loaded the document's window.
-        [self setUndoManager:self managedObjectContext] undoManager;
+        [self setUndoManager:[[self managedObjectContext] undoManager]];
     }
 
     #pragma mark -
     #pragma mark Obsolete API
     - (NSData *)dataRepresentationOfType:(NSString *)aType {
         // Insert code here to write your document from the given data.  You can also choose to override -fileWrapperRepresentationOfType: or -writeToFile:ofType: instead.
-    
+
         // For applications targeted for Tiger or later systems, you should use the new Tiger API -dataOfType:error:.  In this case you can also choose to override -writeToURL:ofType:error:, -fileWrapperOfType:error:, or -writeToURL:ofType:forSaveOperation:originalContentsURL:error: instead.
         return nil;
     }
 
     - (BOOL)loadDataRepresentation:(NSData *)data ofType:(NSString *)aType {
         // Insert code here to read your document from the given data.  You can also choose to override -loadFileWrapperRepresentation:ofType: or -readFromFile:ofType: instead.
-    
+
         // For applications targeted for Tiger or later systems, you should use the new Tiger API readFromData:ofType:error:.  In this case you can also choose to override -readFromURL:ofType:error: or -readFromFileWrapper:ofType:error: instead.
         return YES;
     }
@@ -654,9 +654,9 @@ Added revert functionality (After revert the changes to the document don't get r
         if (managedObjectModel) {
             return managedObjectModel;
         }
-    
+
         NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"Document" withExtension:@"momd"];
-        managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];    
+        managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
         return managedObjectModel;
     }
 
@@ -677,7 +677,7 @@ Added revert functionality (After revert the changes to the document don't get r
             NSString *fileName = [NSString stringWithFormat: @"myd_%x_%x_%x.%@", time(NULL) ,self, NSApp, SqliteFileExt];
             persistentStoreURL = [NSURL fileURLWithPath: [tempFolder stringByAppendingPathComponent: fileName]];
         }
-    
+
         // load
         NSPersistentStoreCoordinator *persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel: [self managedObjectModel]];
         NSLog(@"initializing psc with url %@", persistentStoreURL.path);
@@ -691,14 +691,14 @@ Added revert functionality (After revert the changes to the document don't get r
 
     /**
      Returns the managed object context for the application (which is already
-     bound to the persistent store coordinator for the application.) 
+     bound to the persistent store coordinator for the application.)
      */
 
     - (NSManagedObjectContext *) managedObjectContext {
         if (managedObjectContext != nil) {
             return managedObjectContext;
         }
-    
+
         NSPersistentStoreCoordinator *coordinator = [self createPersistentStoreCoordinator];
         if (coordinator != nil) {
             managedObjectContext = [[NSManagedObjectContext alloc] init];
@@ -737,28 +737,28 @@ Added revert functionality (After revert the changes to the document don't get r
         if (op == NSSaveOperation) { // 0
             result = @"NSSaveOperation";
         } else if (op == NSSaveAsOperation) { // 1
-            result = @"NSSaveAsOperation";        
+            result = @"NSSaveAsOperation";
         } else if (op == NSSaveToOperation) { // 2
-            result = @"NSSaveToOperation";        
+            result = @"NSSaveToOperation";
         } else if (op == NSAutosaveInPlaceOperation) { // 4
-            result = @"NSAutosaveInPlaceOperation";        
+            result = @"NSAutosaveInPlaceOperation";
         } else if (op == NSAutosaveElsewhereOperation) { // 3
-            result = @"NSAutosaveElsewhereOperation";        
+            result = @"NSAutosaveElsewhereOperation";
         } else {
             result = @"Unexpected";
         }
-        return result;       
+        return result;
     }
 
     -(void)clearDirtyStateForURL:(NSURL*)url {
-        self windowForSheet] setDocumentEdited:NO];
-        [self updateChangeCount:[[NSChangeCleared];
+        [[self windowForSheet] setDocumentEdited:NO];
+        [self updateChangeCount:NSChangeCleared];
         persistentStoreURL = [self sqlStoreURL:url];
         [self setFileURL: url];
     }
 
     -(void)writePackageContentsForURL:(NSURL*)packageURL {
-        /*  SAVE OTHER CONTENTS IN PACKAGE HERE 
+        /*  SAVE OTHER CONTENTS IN PACKAGE HERE
          * However, there is a problem. Spotlight detects everytime you write a file in the package.
          */
     }
@@ -767,25 +767,25 @@ Added revert functionality (After revert the changes to the document don't get r
         NSLog(@"EP saveToURL %@", absoluteURL.path);
         NSLog(@".. ofType %@", typeName);
         NSLog(@".. forSaveOperation %@", [self describeSaveOperation:saveOperation]);
-    
+
         if ([typeName isEqualToString:PackageType]) {
             // Save as, etc
             NSLog(@"processing package type");
-            if(self sqlStoreURL: absoluteURL] isEqualTo:persistentStoreURL]) {
+            if([[self sqlStoreURL: absoluteURL] isEqualTo:persistentStoreURL]) {
                 // Overwrite existing file
-                [[NSLog(@"overriding existing file with simple save");
-                if (!self managedObjectContext] save:outError]) {
+                NSLog(@"overriding existing file with simple save");
+                if (![[self managedObjectContext] save:outError]) {
                     return NO;
                 }
             } else {
                 // migrate existing file to new location
                 // save current content
-                [[NSLog(@"migrating to new file (saving current content)");
-                if (!self managedObjectContext] save:outError]) {
+                NSLog(@"migrating to new file (saving current content)");
+                if (![[self managedObjectContext] save:outError]) {
                     return NO;
                 }
                 // create package
-                [[NSFileManager *fm = [NSFileManager defaultManager];
+                NSFileManager *fm = [NSFileManager defaultManager];
                 if ([fm fileExistsAtPath: [absoluteURL path]]) {
                     if (![fm removeItemAtURL: absoluteURL error: outError]) {
                         return NO;
@@ -796,9 +796,9 @@ Added revert functionality (After revert the changes to the document don't get r
                 }
                 // actual db migration
                 NSLog(@"actual migration");
-                NSPersistentStoreCoordinator *psc = self managedObjectContext] persistentStoreCoordinator];
-                if (![psc migratePersistentStore:[psc persistentStoreForURL:persistentStoreURL] 
-                                           toURL:[self sqlStoreURL:absoluteURL] options:nil withType:[[NSSQLiteStoreType error:outError] ) {
+                NSPersistentStoreCoordinator *psc = [[self managedObjectContext] persistentStoreCoordinator];
+                if (![psc migratePersistentStore:[psc persistentStoreForURL:persistentStoreURL]
+                                           toURL:[self sqlStoreURL:absoluteURL] options:nil withType:NSSQLiteStoreType error:outError]) {
                     return NO;
                 }
             }
@@ -811,8 +811,8 @@ Added revert functionality (After revert the changes to the document don't get r
     }
 
     - (NSPersistentStore*) store {
-        NSPersistentStoreCoordinator *psc = self managedObjectContext] persistentStoreCoordinator];
-        [[NSArray *stores = [psc persistentStores];
+        NSPersistentStoreCoordinator *psc = [[self managedObjectContext] persistentStoreCoordinator];
+        NSArray *stores = [psc persistentStores];
         if (stores.count == 1) {
             NSPersistentStore *s = [stores objectAtIndex:0];
             //        NSLog(@"Persistent store %@", [s.URL absoluteString]);
@@ -829,7 +829,7 @@ Added revert functionality (After revert the changes to the document don't get r
         NSLog(@"EP revertToContentsOfURL for: %@", self.fileURL.path);
         NSLog(@"revert to: %@", absoluteURL.path);
         NSLog(@"removing persistent store %@", self.store.URL.path);
-    
+
         persistentStoreURL = [self sqlStoreURL: absoluteURL];
         NSLog(@"managedObjectContext = nil");
         self.managedObjectContext = nil;
@@ -838,5 +838,3 @@ Added revert functionality (After revert the changes to the document don't get r
     }
 
     @end
-
-
